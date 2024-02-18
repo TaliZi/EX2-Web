@@ -24,7 +24,7 @@ const Registration = () => {
       return;
     }
 
-    const userData = { username, displayName, image };
+    const userData = { username, displayName, image, password };
     localStorage.setItem('userData', JSON.stringify(userData));
 
     setUsername('');
@@ -82,13 +82,15 @@ const Registration = () => {
             onChange={(e) => setDisplayName(e.target.value)}
           />
         </div>
-        <div className="mb-3">
-          <input
-            type="file"
-            className="form-control"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
+        <div className="mb-3"><input
+  type="file"
+  aria-label="File Upload"
+  className="form-control"
+  accept="image/*"
+  onChange={handleImageChange}
+  alt="Profile Image"
+/>
+
         </div>
         <button type="button" className="btn btn-primary" onClick={handleRegister}>Register</button>
         {error && <p className="error mt-3">{error}</p>}

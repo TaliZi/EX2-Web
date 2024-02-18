@@ -16,7 +16,7 @@ function App() {
   return (
     <BrowserRouter>
      <div className={theme}>
-        <button onClick={toggleTheme} className='toggle'>Toggle Theme</button> {/* Button to toggle theme */}
+        <button onClick={toggleTheme} className='toggle' >{(theme === 'light' ? 'dark' : 'light')}</button> {/* Button to toggle theme */}
      
         <Routes>
           <Route path="/login" element={<Login />} />
