@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const Registration = () => {
+  // State variables to hold user registration information and error messages
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -8,25 +9,31 @@ const Registration = () => {
   const [image, setImage] = useState(null);
   const [error, setError] = useState('');
 
+  // Function to handle user registration
   const handleRegister = () => {
+    // Check if any field is empty
     if (!username || !password || !confirmPassword || !displayName || !image) {
       setError('All fields are required');
       return;
     }
 
+    // Check if password and confirm password match
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
 
+    // Check if password meets minimum length requirement
     if (password.length < 8) {
       setError('Password must be at least 8 characters long');
       return;
     }
 
+    // Store user data in local storage
     const userData = { username, displayName, image, password };
     localStorage.setItem('userData', JSON.stringify(userData));
 
+    // Clear form fields and error message
     setUsername('');
     setPassword('');
     setConfirmPassword('');
@@ -34,19 +41,23 @@ const Registration = () => {
     setImage(null);
     setError('');
 
+    // Alert user about successful registration and redirect to feed page
     alert('Registration successful!');
     window.location.replace('/feed');
   };
 
+  // Function to handle image upload
   const handleImageChange = (e) => {
     setImage(URL.createObjectURL(e.target.files[0]));
   };
 
+  // Render registration form
   return (
     <div className="container mt-5">
       <h2 className="mb-4">Registration</h2>
       <form>
         <div className="mb-3">
+          {/* Input field for username */}
           <input
             type="text"
             className="form-control"
@@ -56,6 +67,7 @@ const Registration = () => {
           />
         </div>
         <div className="mb-3">
+          {/* Input field for password */}
           <input
             type="password"
             className="form-control"
@@ -65,6 +77,7 @@ const Registration = () => {
           />
         </div>
         <div className="mb-3">
+          {/* Input field for confirming password */}
           <input
             type="password"
             className="form-control"
@@ -74,6 +87,7 @@ const Registration = () => {
           />
         </div>
         <div className="mb-3">
+          {/* Input field for display name */}
           <input
             type="text"
             className="form-control"
@@ -82,17 +96,20 @@ const Registration = () => {
             onChange={(e) => setDisplayName(e.target.value)}
           />
         </div>
-        <div className="mb-3"><input
-  type="file"
-  aria-label="File Upload"
-  className="form-control"
-  accept="image/*"
-  onChange={handleImageChange}
-  alt="Profile Image"
-/>
-
+        <div className="mb-3">
+          {/* Input field for uploading profile image */}
+          <input
+            type="file"
+            aria-label="File Upload"
+            className="form-control"
+            accept="image/*"
+            onChange={handleImageChange}
+            alt="Profile Image"
+          />
         </div>
+        {/* Register button */}
         <button type="button" className="btn btn-primary" onClick={handleRegister}>Register</button>
+        {/* Error message display */}
         {error && <p className="error mt-3">{error}</p>}
       </form>
     </div>
