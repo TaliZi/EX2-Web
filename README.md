@@ -10,14 +10,16 @@
 ### We preferred to divide the work in this way to optimize our time.
 
 ## Run:
+npm cache clean --force
 
 npm install
+
 npm start
 
 
 ## components:
 ### Login.js:
-This script is invoked when the URL path is set to "/".
+This script is invoked when the URL path is set to "http://localhost:3000/login".
 The code defines a React component named Login, which serves as a login form for a web application, a Facebook-like social media platform. Users can input their username and password, and upon clicking the login button, the credentials are validated against a JSON data source (userData) containing user information. If the username or password is incorrect or missing, appropriate error messages are displayed. Successful login triggers an alert message and redirects the user to a feed page. In addition,  there's an option to navigate to a registration page to create a new account.
 
 ### Registration.js
