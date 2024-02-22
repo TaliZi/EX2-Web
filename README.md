@@ -10,7 +10,7 @@
 ### We preferred to divide the work in this way to optimize our time.
 
 ## Run:
-
+npm cache clean --force
 npm install
 npm start
 
