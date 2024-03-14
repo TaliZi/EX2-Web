@@ -1,45 +1,40 @@
 import React, { useState } from "react";
-import userData from "../data.json";
 
 const Login = () => {
-  // State variables to hold username, password, and error messages
-  const [username, setUsername] = useState("");
+  // State variables to hold email, password, and error messages
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   // Function to handle login button click
-  const handleLogin = () => {
-    // Check if username or password is empty
-    if (!username || !password) {
-      setError("All fields are required");
-      return;
-    }
 
-    // Find user with the given username
-    const user = userData.Users.find((user) => user.email === username);
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email, password }),
+      });
+      console.log(response);
 
-    // If user not found or password is incorrect
-    if (!user || user.password !== password) {
-      // Check if the user is stored in local storage and has correct credentials
-      const storedUser = JSON.parse(localStorage.getItem("userData"));
-      if (
-        !storedUser ||
-        storedUser.username !== username ||
-        storedUser.password !== password
-      ) {
-        setError("Invalid username or password");
-        return;
+      if (!response.ok) {
+        throw new Error("Invalid email or password");
       }
+
+      const userData = await response.json();
+      localStorage.setItem("userData", JSON.stringify(userData.token));
+      localStorage.setItem("userMail", email);
+      localStorage.setItem("userId", userData.id);
+      setEmail("");
+      setPassword("");
+      setError("");
+      alert("Login successful!");
+      window.location.replace("/feed");
+    } catch (error) {
+      setError(error.message);
     }
-
-    // Clear username, password, and error message
-    setUsername("");
-    setPassword("");
-    setError("");
-
-    // Alert user about successful login and redirect to feed page
-    alert("Login successful!");
-    window.location.replace("/feed");
   };
 
   // Render login form
@@ -70,12 +65,12 @@ const Login = () => {
         style={{ maxWidth: 400, borderRadius: 8 }}
       >
         <div className="mb-3">
-          {/* Input field for username */}
+          {/* Input field for email */}
           <input
             type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="form-control"
           />
         </div>
