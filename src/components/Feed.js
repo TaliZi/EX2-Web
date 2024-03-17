@@ -114,7 +114,26 @@ const Feed = () => {
   // Function to decline friend request
   const declineFriendRequest = async (userId) => {
     try {
-      // Make API request to decline friend request
+      const response = await fetch(
+        `http://localhost:4000/api/users/${userId}/decline-friend-request`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("userData")}`,
+          },
+          body: JSON.stringify({ user: userData }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to decline friend request");
+      }
+
+      // Update the list of friend requests received after declining
+      const updatedRequestsReceived = friendRequestsReceived.filter(
+        (u) => u.userId !== userId
+      );
+      setFriendRequestsReceived(updatedRequestsReceived);
     } catch (error) {
       console.error("Error declining friend request:", error);
     }
