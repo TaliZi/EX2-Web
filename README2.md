@@ -1,4 +1,4 @@
-# Ex2-web
+# Ex3-web
 
 ## This project is the front end of the web application of facebook.
 
