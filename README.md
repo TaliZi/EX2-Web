@@ -1,4 +1,4 @@
-# to check this task - please read README2.md file
+# To check this task - please read README2.md file
 
 # Getting Started with Create React App
 
