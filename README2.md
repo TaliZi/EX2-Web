@@ -1,5 +1,5 @@
 # Ex3-web
-## NOTE: EX2 version of the project was submitted on 23/2/24. So if you want to check EX2, please click on "Commits" and download the final zip from 23/2/24. 
+## NOTE: EX2 version of the project was submitted on 23/2/24. So if you want to check exercise number 2, please click on "Commits" and download the final zip from 23/2/24. 
 
 ## This project is the front end of the web application of facebook.
 
