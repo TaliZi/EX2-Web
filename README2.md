@@ -21,5 +21,4 @@ npm start
 
 
 
-### setupTests.js
-This code snippet imports and sets up the jest-dom library, which extends Jest's capabilities for testing DOM nodes in JavaScript code. By adding custom matchers, it enables developers to write more expressive and readable assertions when testing DOM elements in Jest tests. This setup enhances the testing experience by providing additional functionality, such as checking for specific text content within elements using regular expressions. The aim of this code is to improve the effectiveness and clarity of unit tests for DOM-related functionality in JavaScript applications.
+
