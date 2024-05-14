@@ -270,12 +270,15 @@ const Feed = () => {
         }
       );
       if (!response.ok) {
-        throw new Error("Failed to add post");
+        const errorData = await response.json();
+        const errorMessage = errorData.error;
+        throw new Error(errorMessage);
       }
       setNewPostMessage("");
       fetchPosts(); // Refresh posts after adding a new one
     } catch (error) {
       console.error("Error adding post:", error);
+      alert("Failed to add post! " + error);
     }
   };
 
