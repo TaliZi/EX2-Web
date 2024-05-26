@@ -1,3 +1,5 @@
+## Please note - a wiki folder that explains the final project, i.e. step 4 and last, appears in the EX1 repository under the branch EX4-BloomFilterServer
+
 # Ex3-web
 ## NOTE: EX2 version of the project was submitted on 23/2/24. So if you want to check exercise number 2, please click on "Commits" and download the last zip from 23/2/24. 
 
